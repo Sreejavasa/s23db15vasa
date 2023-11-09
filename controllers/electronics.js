@@ -10,6 +10,7 @@ exports.electronics_list = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
    };
+   
 // for a specific electronics.
 exports.electronics_detail = function(req, res) {
  res.send('NOT IMPLEMENTED: electronics detail: ' + req.params.id);
@@ -26,3 +27,15 @@ exports.electronics_delete = function(req, res) {
 exports.electronics_update_put = function(req, res) {
  res.send('NOT IMPLEMENTED: electronics update PUT' + req.params.id);
 };
+// VIEWS
+// Handle a show all view
+exports.costume_view_all_Page = async function(req, res) {
+    try{
+    theCostumes = await Costume.find();
+    res.render('costumes', { title: 'Costume Search Results', results: theCostumes });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+   };
