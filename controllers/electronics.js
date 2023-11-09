@@ -1,8 +1,15 @@
 var electronics = require('../models/electronics');
-// List of all electronicss
-exports.electronics_list = function(req, res) {
- res.send('NOT IMPLEMENTED: electronics list');
-};
+// // List of all electronics
+exports.electronics_list = async function(req, res) {
+    try{
+    electronics= await electronics.find();
+    res.send(electronics);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+   };
 // for a specific electronics.
 exports.electronics_detail = function(req, res) {
  res.send('NOT IMPLEMENTED: electronics detail: ' + req.params.id);
