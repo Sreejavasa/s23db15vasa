@@ -15,10 +15,29 @@ exports.electronics_list = async function(req, res) {
 exports.electronics_detail = function(req, res) {
  res.send('NOT IMPLEMENTED: electronics detail: ' + req.params.id);
 };
+
 // Handle electronics create on POST.
-exports.electronics_create_post = function(req, res) {
- res.send('NOT IMPLEMENTED: electronics create POST');
-};
+// Handle Costume create on POST.
+exports.electronics_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new electronics();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"costume_type":"goat", "cost":12, "size":"large"}
+    document.productname = req.body.productname;
+    document.manufacturer = req.body.manufacturer;
+    document.price = req.body.price;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+   };
+
 // Handle electronics delete form on DELETE.
 exports.electronics_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: electronics delete DELETE ' + req.params.id);
@@ -29,10 +48,10 @@ exports.electronics_update_put = function(req, res) {
 };
 // VIEWS
 // Handle a show all view
-exports.costume_view_all_Page = async function(req, res) {
+exports.electronics_view_all_Page = async function(req, res) {
     try{
-    theCostumes = await Costume.find();
-    res.render('costumes', { title: 'Costume Search Results', results: theCostumes });
+        electronics = await electronics.find();
+    res.render('electronics', { title: 'electronicsSearch Results', rest: electronics});
     }
     catch(err){
     res.status(500);
