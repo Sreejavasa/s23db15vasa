@@ -55,7 +55,7 @@ app.use(function(err, req, res, next) {
 // We can seed the collection if needed onserver start
 async function recreateDB(){
   // Delete everything
- //  await Devices.deleteMany();
+ await electronics.deleteMany();
   let instance1 = new
   electronics({productname: "Electronics 1", manufacturer : "dell", price: 199.99 });
   instance1.save().then(doc=>{
