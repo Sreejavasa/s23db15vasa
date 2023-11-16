@@ -11,6 +11,7 @@ var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
 var electronics = require("./models/electronics");
 var resourceRouter = require("./routes/resource");
+var electronicssRouter = require("./routes/electronicss");
 var app = express();
 
 // view engine setup
@@ -35,6 +36,7 @@ app.use('/electronics', electronicsRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
 app.use('/resource', resourceRouter);
+app.use('/electronicss', electronicssRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

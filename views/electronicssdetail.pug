@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  - let costumeid = toShow._id
+  - let productname = toShow.productname
+  - let manufacturer = toShow.manufacturer
+  - let price = toShow.price
+  
+  div
+    div.row
+      div(class='costumeAttr mr-3') Electronics ID is:
+        div #{costumeid}
+    div.row
+      div(class='costumeAttr mr-3') Electronics Type is:
+        div #{productname}
+    div.row
+      div(class='costumeAttr mr-3') Electronics manufacturer is:
+        div #{manufacturer}
+    div.row
+      div(class='costumeAttr mr-3') Electronics Cost is:
+        div #{price}

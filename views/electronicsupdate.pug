@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1= title
+  - let costumeid = toShow._id
+  - let productname = toShow.productname
+  - let manufacturer = toShow.manufacturer
+  - let price = toShow.price
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{costumeid}
+
+  - let actionid = "/resource/electronics/" + costumeid
+  form(id='CostumeForm', action= actionid, method="PUT")
+    div.form-group
+      label.costumeAttr(for='productname') Costume type
+      input#costume_type(type='text', name='productname', value= productname)
+    div.form-group
+      label.costumeAttr(for='manufacturer') Costume size
+      input#size(type='text', name='manufacturer', value= manufacturer)
+    div.form-group
+      label.costumeAttr(for='price') Costume cost
+      input#cost(type='number', name='price', value= price)
+    input(type="submit")
+    script.
+      document.forms['CostumeForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show the user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          if (!resp.ok) {
+            throw new Error(`HTTP error! Status: ${resp.status}`);
+          }
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded");
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed: " + error);
+        });
+      });

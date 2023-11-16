@@ -15,7 +15,7 @@ exports.electronics_list = async function(req, res) {
 exports.electronics_detail = async function(req, res) {
     console.log("detail" + req.params.id);
     try {
-        const result = await Electronics.findById(req.params.id);
+        const result = await electronics.findById(req.params.id);
         if (!result) {
             res.status(404).send(`{"error": "Document for ID ${req.params.id} not found"}`);
         } else {
