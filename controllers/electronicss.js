@@ -20,7 +20,7 @@ exports.electronics_view_one_Page = async function(req, res) {
 exports.electronics_create_Page = function(req, res) {
     console.log("create view")
     try{
-    res.render('electronicscreate', { title: 'Costume Create'});
+    res.render('electronicscreate', { title: 'electronics Create'});
     }
     catch(err){
     res.status(500)
@@ -34,7 +34,7 @@ exports.electronics_update_Page = async function(req, res) {
     console.log("update view for item "+req.query.id)
     try{
     let result = await electronics.findById(req.query.id)
-    res.render('electronicsupdate', { title: 'Costume Update', toShow: result });
+    res.render('electronicsupdate', { title: 'electronics Update', toShow: result });
     }
     catch(err){
     res.status(500)
@@ -47,7 +47,7 @@ exports.electronics_delete_Page = async function(req, res) {
     console.log("Delete view for id " + req.query.id)
     try{
     result = await electronics.findById(req.query.id)
-    res.render('electronicsdelete', { title: 'Costume Delete', toShow:
+    res.render('electronicsdelete', { title: 'electronics Delete', toShow:
    result });
     }
     catch(err){

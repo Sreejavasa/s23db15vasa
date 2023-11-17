@@ -2,31 +2,32 @@ extends layout
 
 block content
   h1= title
-  form(id='CostumeForm', action="/resource/electronics", method="POST")
-    div.form-group
-      label.costumeAttr(for='costume_type') Electronics type
-      input#costume_type(type='text', name='productname')
-    div.form-group
-      label.costumeAttr(for='size') Electronics manufacturer
-      input#size(type='text', name='manufacturer')
-    div.form-group
-      label.costumeAttr(for='cost') Electronics cost
-      input#cost(type='number', name='price')
-    input(type="submit")
-    script.
-      document.forms['CostumeForm'].addEventListener('submit', (event) => {
-        event.preventDefault();
-        // TODO do something here to show user that form is being submitted
-        fetch(event.target.action, {
-          method: 'POST',
-          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-        }).then((resp) => {
-          return resp.json(); // or resp.text() or whatever the server sends
-        }).then((body) => {
-          alert("Save succeeded");
-          // TODO handle body
-        }).catch((error) => {
-          // TODO handle error
-          alert("Save failed: " + error);
+  div(style='width: 50%; margin: auto; padding: 20px; background-color: #f0f0f0;')
+    form(id='CostumeForm', action="/resource/electronics", method="POST")
+      div(style='margin-bottom: 15px;')
+        label.costumeAttr(for='costume_type', style='display: block; font-weight: bold;') Electronics type
+        input#costume_type(type='text', name='productname', style='width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; box-sizing: border-box;')
+      div(style='margin-bottom: 15px;')
+        label.costumeAttr(for='size', style='display: block; font-weight: bold;') Electronics manufacturer
+        input#size(type='text', name='manufacturer', style='width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; box-sizing: border-box;')
+      div(style='margin-bottom: 15px;')
+        label.costumeAttr(for='cost', style='display: block; font-weight: bold;') Electronics cost
+        input#cost(type='number', name='price', style='width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; box-sizing: border-box;')
+      input(type="submit", style='background-color: #4caf50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;')
+      script.
+        document.forms['CostumeForm'].addEventListener('submit', (event) => {
+          event.preventDefault();
+          // TODO do something here to show the user that the form is being submitted
+          fetch(event.target.action, {
+            method: 'POST',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+          }).then((body) => {
+            alert("Save succeeded");
+            // TODO handle body
+          }).catch((error) => {
+            // TODO handle error
+            alert("Save failed: " + error);
+          });
         });
-      });

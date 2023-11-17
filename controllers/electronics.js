@@ -1,4 +1,3 @@
-const electronics = require('../models/electronics');
 var Electronics = require('../models/electronics'); // Assuming 'electronics' is the model
 
 // List of all electronics
@@ -75,13 +74,26 @@ exports.electronics_update_put = async function(req, res) {
     }
     };
 
+    exports.electronics_list = async function(req, res) {
+        try{
+       var electronic = await Electronics.find();
+        res.send(electronic);
+        }
+        catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+        }
+        };
+
 // VIEWS
 // Handle a show all view
 exports.electronics_view_all_Page = async function(req, res) {
     try {
-        const electronics = await Electronics.find();
-        res.render('electronics', { title: 'electronics Search Results', rest: electronics });
+         var electronic = await Electronics.find();
+        console.log("x"+ electronic);
+        res.render('electronics', { title: 'electronics Search Results', rest: electronic });
     } catch (err) {
-        res.status(500).send(`{"error": ${err}`);
+        console.log("x"+ electronic);
+        res.status(500).send(`{"error": ${err}}`);
     }
 };

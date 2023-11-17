@@ -12,12 +12,15 @@ block content
   .row
     - for (let i = 0; i < results.length; i++)
       .col-sm-2
+      - let destination = `dispatch(\"/electronicss/update?id=${'65579f5ba7d28e81c5e2ed86'}\")`
         h4= results[i].productname
         h3(onclick=`buy(${i})`) BUY
         p manufacturer : #{results[i].manufacturer}
         p price: $#{results[i].price}
+                button.btn( class="btn-primary ml-1", onclick= destination) Update
+        
  
   script.
-      function buy(index) {
-        alert("You purchased item " + index);
+      function dispatch(path) {
+        window.location.href=path
       }

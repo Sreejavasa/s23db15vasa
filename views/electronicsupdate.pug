@@ -8,21 +8,21 @@ block content
   - let price = toShow.price
 
   div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{costumeid}
+    div.mr-1(style='color: #333;') ID is
+    div(style='color: #555;') #{costumeid}
 
   - let actionid = "/resource/electronics/" + costumeid
   form(id='CostumeForm', action= actionid, method="PUT")
     div.form-group
-      label.costumeAttr(for='productname') Costume type
-      input#costume_type(type='text', name='productname', value= productname)
+      label.costumeAttr(for='productname', style='display: block; font-weight: bold; color: #333;') Costume type
+      input#costume_type(type='text', name='productname', value= productname, style='width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; box-sizing: border-box;')
     div.form-group
-      label.costumeAttr(for='manufacturer') Costume size
-      input#size(type='text', name='manufacturer', value= manufacturer)
+      label.costumeAttr(for='manufacturer', style='display: block; font-weight: bold; color: #333;') Costume size
+      input#size(type='text', name='manufacturer', value= manufacturer, style='width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; box-sizing: border-box;')
     div.form-group
-      label.costumeAttr(for='price') Costume cost
-      input#cost(type='number', name='price', value= price)
-    input(type="submit")
+      label.costumeAttr(for='price', style='display: block; font-weight: bold; color: #333;') Costume cost
+      input#cost(type='number', name='price', value= price, style='width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; box-sizing: border-box;')
+    input(type="submit", style='background-color: #4caf50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;')
     script.
       document.forms['CostumeForm'].addEventListener('submit', (event) => {
         event.preventDefault();

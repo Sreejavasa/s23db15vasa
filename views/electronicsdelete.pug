@@ -1,6 +1,28 @@
 extends layout
 
 block content
+  style.
+    #costumeContainer {
+      width: 50%;
+      margin: auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    
+    .costumeAttr {
+      color: #333;
+    }
+    
+    .btn {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: #555;
+      color: white;
+    }
+
   h1= title
   if (toShow == null)
     h2 No instance to delete
@@ -14,7 +36,7 @@ block content
     script.
       let actionid = "#{actionid}"
 
-    div
+    div(id='costumeContainer')
       div.row
         div(class='costumeAttr mr-3') Costume ID is:
           div #{costumeid}
