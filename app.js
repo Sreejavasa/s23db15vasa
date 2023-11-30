@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+const session = require("express-session");
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -45,6 +46,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(require('express-session')({
   secret: 'keyboard cat',
   resave: false,

@@ -8,13 +8,21 @@ var electronicss_controller = require('../controllers/electronicss');
 router.get('/', api_controller.api);
 /// electronics ROUTES ///
 // POST request for creating a electronics.
-router.get('/detail', electronicss_controller.electronics_view_one_Page);
+router.get('/detail',secured, electronicss_controller.electronics_view_one_Page);
+// A little function to check if we have an authorized user and continue on
+//or
+// redirect to login.
+const secured = (req, res, next) => {
+if (req.user){
+return next();
+}
+res.redirect("/login");
+}
+router.get('/create',secured, electronicss_controller.electronics_create_Page);
 
-router.get('/create', electronicss_controller.electronics_create_Page);
+router.get('/update',secured, electronicss_controller.electronics_update_Page);
 
-router.get('/update', electronicss_controller.electronics_update_Page);
-
-router.get('/delete', electronicss_controller.electronics_delete_Page);
+router.get('/delete',secured, electronicss_controller.electronics_delete_Page);
 
 
 module.exports = router;
